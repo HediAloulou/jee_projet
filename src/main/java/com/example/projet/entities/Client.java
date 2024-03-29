@@ -1,12 +1,14 @@
 package com.example.projet.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Client implements Serializable {
+public class Client implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "identification_client")
@@ -26,4 +28,6 @@ public class Client implements Serializable {
 	private String prenom;
 	@Column(name = "email_du_client")
 	private String email;
+	@OneToMany(mappedBy="client")
+	private List<CompteBancaire> compte_client;
 }
